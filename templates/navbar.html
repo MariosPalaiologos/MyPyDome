@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black" >
+    <div class="container-fluid">
+      <a style="font-size: 30px; margin-right: 20px; color:white" class="navbar-brand" href="/../home">MyPyDome</a>
+      <button style = "color:rgb(196, 204, 250)" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link active" aria-current="page" href="/../home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link" href="/products/">Products</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          {% if request.user.username == 'admin'  %}
+          <li class="nav-item">
+            <a style = "text-decoration: underline; color:white; font-size: 20px;"class="nav-link" href="/admin" tabindex="-1">Admin Tab</a>
+          </li>
+          {% endif %}
+        </ul>
+
+        <span style="text-decoration:underline; font-size: 18px; margin-right: 20px; color:white" id="datetime"></span>
+          <script>
+            var dt = new Date();
+            document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "
+          </script>
+
+        <span style="font-size: 20px; margin-right: 20px; color:white">Hello, {{request.user}}</span>
+        <span><a style="margin-right: 20px; color:white" href="/accounts/logout">Logout</a></span>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style='text-align: center; font-size:80px; color:rgb(51, 51, 51); text-decoration: underline;'>Products</h1>
+    <div align=center style='gap: 20px 1px;'class="row">
+        {% for product in products %}
+        <div  class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ product.image_urls }}"  alt="Card image cap" width='100' height='225'>
+                <div class="card-body" style="background-color:rgb(206, 206, 206);">
+                  <h5 style='text-align: center;' class="card-title">{{ product.name }}</h5>
+                  <p style='text-align: center;' class="card-text">${{ product.price }}</p>
+                  <a style='transform: translateY(-30%);'  href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}
