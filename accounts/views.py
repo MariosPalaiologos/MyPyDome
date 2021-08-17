@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required # gia na mhn exw prosvash xwris log in
 
 from django.contrib.auth import authenticate, login, logout
+
+from .forms import CreateUserForm
+
 # Create your views here.
 
 
@@ -49,10 +52,10 @@ def register_index(request):            # gia to register/
     if request.user.is_authenticated:  # gia na mhn mporw na paw sto log in page otan eimai hdh mesa
         return redirect("home")
     else:
-        form = UserCreationForm()
+        form = CreateUserForm()
 
         if request.method == 'POST':
-            form = UserCreationForm(request.POST)
+            form = CreateUserForm(request.POST)
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
