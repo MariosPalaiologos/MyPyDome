@@ -16,6 +16,8 @@
           <th scope="col">#</th>
           <th scope="col">ID</th>
           <th scope="col">Status</th>
+          <th scope="col">Update</th>
+          <th scope="col">Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +27,12 @@
           <th scope="row">{{ item.id }}</th>
             <td>{{ item.wishlist_item }}</td>
             <td>{{ item.status }}</td>
+            <td>
+              <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
+            </td>
+            <td> 
+              <a class="btn btn-sm btn-danger" href="">Remove</a>
+            </td>
         </tr>
         {% endif %}
         {% endfor %}

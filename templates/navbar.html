@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link active" aria-current="page" href="/../home">Home</a>
           </li>
+          {% if request.user.username == 'admin'  %}
           <li class="nav-item">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link" href="/products/">Products</a>
           </li>
+          {% endif %}
           <li class="nav-item dropdown">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile

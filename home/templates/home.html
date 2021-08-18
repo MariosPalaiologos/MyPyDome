@@ -1,6 +1,6 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png">
@@ -13,59 +13,102 @@
 
     <title>Home Page</title>
 
-    {% include 'navbar.html' %}
-
+    <title>Have fun!!</title>
+  
   </head>
-
   <body style="background-image: url('https://images.unsplash.com/photo-1628277575641-ee4b1bd8454f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
 
-    <style>
-      .sm_icon{
- 
-      width: 160px;
-      height: 100px;
-      border-radius: 25px; 
-      border: 2px solid #d1d1d1;
-      box-shadow: 0 12px 16px 0 rgba(141, 141, 141, 0.966),0 17px 50px 0 rgba(69, 49, 248, 0.19);
-       /* the height is adjusted automatically*/
-      }
+    
 
-  
+    <style>
+      .fakeimg {
+        height: 200px;
+        background: #aaa;
+      }
+      
+      .sm_icon{
+    
+      width: 100px;
+      height:65px;
+      border-radius: 20px; 
+      border: 2px solid #2929fa;
+      margin: bottom 4px;
+    
+        /* the height is adjusted automatically*/
+      }
+    
+      footer {
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        bottom: 0px;
+        background-color: rgb(8, 6, 5);
+        color: white;
+      }
+    
     </style>
 
-    <H1 align="center" style="font-size: 70px; color:rgb(51, 51, 51); text-decoration: underline;">
-      Links and Socials
-    </H1>
+    <div style = "width: 100%; position:fixed">
+    {% include 'navbar.html' %}
+    </div>
+
     <H2>&nbsp;
-      <br> &nbsp;
-      <br> &nbsp;
+    <br> &nbsp;
     </H2>
 
-    <div>
 
-      <div align="center">
-        <a target="_blank" href="https://www.linkedin.com/in/marios-paleologos-49b36b1a2/">
-          <img class="sm_icon" style = "background-color: white" src="{% static 'images/Linkedin.png' %}">
-        </a>
-
-        <a target="_blank" href="#">
-          <img class="sm_icon" src="{% static 'images/instagram.png' %}">
-        </a>
-
-        <a target="_blank" href="https://www.facebook.com/marios.paleologos/">
-          <img class="sm_icon" src="{% static 'images/facebook.png' %}">
-        </a>
-
-        <a target="_blank" href="https://www.youtube.com/channel/UCnMKn7R-q7WQuPpTsAV9AjQ">
-          <img class="sm_icon" src="{% static 'images/youtube.png' %}">
-        </a>
+    <div class="container" style="margin-top:30px">
+      <div class="row">
+        <div class="col-sm-4">
+          <h2 style="color:black; text-decoration:underline;">About the Project</h2>
+          <p style="color:black; text-align:justify; text-justify: inter-word; ">Project started at August 4th, 2021. Its original title was "PyShop" and it was based on some tutorials and documentation about Django.</p>
+          <h5>Photo of me:</h5>
+          <div class="fakeimg">Fake Image</div>
+          <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+          <h3>Some Links</h3>
+          <p>Lorem ipsum dolor sit ame.</p>
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a target="_blank" href="https://www.linkedin.com/in/marios-paleologos-49b36b1a2/">
+                <img class="sm_icon" style = "background-color: white" src="{% static 'images/Linkedin.png' %}">
+              </a>
+          
+              <a target="_blank" href="#">
+                <img class="sm_icon" src="{% static 'images/instagram.png' %}">
+              </a>
+            </li>
+            <li class="nav-item">
+              <a target="_blank" href="https://www.facebook.com/marios.paleologos/">
+                <img class="sm_icon" src="{% static 'images/facebook.png' %}">
+              </a>
+            
+              <a target="_blank" href="https://www.youtube.com/channel/UCnMKn7R-q7WQuPpTsAV9AjQ">
+                <img class="sm_icon" src="{% static 'images/youtube.png' %}">
+              </a>
+            </li>
+          </ul>
+          <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+          <h2 style="color:black;">TITLE HEADING</h2>
+          <h5>Title description, Dec 7, 2017</h5>
+          <div class="fakeimg">Fake Image</div>
+          <p>Some text..</p>
+          <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <br>
+          <h2>TITLE HEADING</h2>
+          <h5>Title description, Sep 2, 2017</h5>
+          <div class="fakeimg">Fake Image</div>
+          <p>Some text..</p>
+          <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        </div>
       </div>
-
     </div>
- 
 
-     
-    
+    <footer>
+      <p> Thanks for visiting! </p>
+    </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -77,5 +120,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->
+
   </body>
 </html>

@@ -18,6 +18,8 @@
           <th scope="col">Price</th>
           <th scope="col">Category</th>
           <th scope="col">Description</th>
+          <th scope="col">Update</th>
+          <th scope="col">Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -29,10 +31,20 @@
             <td>$ {{ item.price }}</td>
             <td>{{ item.category }}</td>
             <td>{{ item.description }}</td>
+            <td>
+              <a class="btn btn-sm btn-info" href="{% url 'update_item' item.id %}">Update</a>
+            </td>
+            <td> 
+              <a class="btn btn-sm btn-danger" href="">Remove</a>
+            </td>
         </tr>
         {% endif %}
         {% endfor %}
       </tbody>
 </table>
+
+<div align="center">
+  <a style ="height: 45px; opacity:0.9; border-radius: 25px; border: 2px solid #d1d1d1;" href="/products/new_item" class="btn btn-primary" type="button">Add a new item</a>
+</div>
 
 {% endblock %}

@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required # gia na mhn exw prosv
 
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, UpdateUserForm
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -66,6 +68,26 @@ def register_index(request):            # gia to register/
         context = {'form':form}
         #return HttpResponse('Hello World from register')
         return render(request, 'register.html', context)
+
+
+@login_required(login_url='accounts')
+def updateUser(request, pk):
+
+    user = User.objects.get(id=pk)
+    form = UpdateUserForm(instance=user)
+
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+
+            return redirect('/products/profile/')    #paw sto login afou kanw register
+
+    context = {'form':form}
+        #return HttpResponse('Hello World from register')
+    return render(request, 'update_user.html', context)
 
 
 def logout_user_index(request):
