@@ -9,7 +9,7 @@
           <li class="nav-item">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link active" aria-current="page" href="/../home">Home</a>
           </li>
-          {% if request.user.username == 'admin'  %}
+          {% if request.user.is_staff == 1  %}
           <li class="nav-item">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link" href="/products/">Products</a>
           </li>
