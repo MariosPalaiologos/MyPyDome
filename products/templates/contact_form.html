@@ -3,7 +3,7 @@
     
 <head>
 	<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png">
-	<title>Add/Update a Product</title>
+	<title>Contact Us</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -20,8 +20,8 @@
 			background-image: url("https://images.unsplash.com/photo-1628277575641-ee4b1bd8454f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"); background-repeat: no-repeat; background-size: cover;
 		}
 		.user_card {
-			width: 540px;
-            height: 510px;
+			width: 480px;
+            height: 380px;
 			margin-top: auto;
 			margin-bottom: auto;
 			background-image: url("https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=562&q=80"); background-repeat: no-repeat; background-size: cover;
@@ -90,9 +90,7 @@
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
-
-
-					<h3 style= "text-decoration: underline; color:rgb(2, 2, 2);" id="form-title">Add/Update a Product</h3>
+					<h3 style= "text-decoration: underline; color:rgb(2, 2, 2);" id="form-title">Contact US</h3>
 				</div>
 
 <div style= "text-decoration: underline; color:rgb(255, 253, 253);" class="d-flex justify-content-center form_container">
@@ -103,41 +101,27 @@
             <div class="input-group-append">
                
             </div>
-            {{ form.name.name }}: 
-            {{ form.name }}
+            {{ form.message.name }}: 
+            {{ form.message }}
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-append">
-                
+               
             </div>
-            {{ form.price.name }}: 
-            {{ form.price }}
+            {{ form.change_account_type.name }}: 
+            {{ form.change_account_type }}
         </div>
 
-        <div class="input-group mb-3">
-            <div class="input-group-append">
-                
-            </div>
-            {{ form.category.name }}: 
-            {{ form.category }}
-        </div>
+        
 
-        <div class="input-group mb-3">
-            <div class="input-group-append">
-                
-            </div>
-            {{ form.description.name }}: 
-            {{ form.description }}
-        </div>
+		<div class="d-flex justify-content-center mt-3 login_container">
+				<input  class="login_btn" type="submit" value="Submit">
+		</div>
 
-            <div class="d-flex justify-content-center mt-3 login_container">
-                 <input  class="login_btn" type="submit" value="Add Item">
-            </div>
-
-			<div class="d-flex justify-content-center mt-4 login_container">
-				<a style="border-radius: 15px;" type="button" class="btn btn-danger" href="/products/wishlist/">Return</a>
-			</div>
+		<div class="d-flex justify-content-center mt-4 login_container">
+			<a style="border-radius: 15px;" type="button" class="btn btn-danger" href="/products/profile/">Return</a>
+		</div>
 
     </form>
 

@@ -2,49 +2,133 @@
 
 {% block content %}
 
-<H1 align="center" style="font-size: 70px; color:rgb(51, 51, 51); text-decoration: underline;">
-    Your Wishlist
-  </H1>
-  <H2>&nbsp;
-    <br> &nbsp;
-    <br> &nbsp;
-  </H2>
 
-<table style='text-align: center;' class="table table-dark table-striped">
-    <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Category</th>
-          <th scope="col">Description</th>
-          <th scope="col">Update</th>
-          <th scope="col">Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in wishlist %}
-        {% if request.user.id == item.creator_id  %}
-        <tr>
-          <th scope="row">{{ item.id }}</th>
-            <td>{{ item.name }}</td>
-            <td>$ {{ item.price }}</td>
-            <td>{{ item.category }}</td>
-            <td>{{ item.description }}</td>
-            <td>
-              <a class="btn btn-sm btn-info" href="{% url 'update_item' item.id %}">Update</a>
-            </td>
-            <td> 
-              <a class="btn btn-sm btn-danger" href="">Remove</a>
-            </td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-      </tbody>
-</table>
+<div class="container-fluid" style="margin-top:30px; width:85%">
+  <div class="row">
+    <div class="col-sm-4">
+      
 
-<div align="center">
-  <a style ="height: 45px; opacity:0.9; border-radius: 25px; border: 2px solid #d1d1d1;" href="/products/new_item" class="btn btn-primary" type="button">Add a new item</a>
+      <H2 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
+        Basic Info
+      </H2>
+      <H2>&nbsp;
+      </H2>
+    
+      <table style='text-align: center;' class="table table-dark table-striped">
+        <thead>
+            <tr>
+              <th scope="col">Username</th>
+              <th scope="col">Date Joined</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ request.user.username }}</th>
+                <td>{{ request.user.date_joined.date }}</td>  
+            </tr>
+          </tbody>
+      </table>
+
+      <div align="center">
+        <a class="btn btn-primary" style ="height: 45px; opacity:0.9; border-radius: 20px; border: 3px solid #000000;" href="{% url 'update_user' request.user.id %}">Update Info</a>
+      </div>
+
+     
+
+      <hr class="d-sm-none">
+    </div>
+
+    <div class="col-sm-8">
+      
+
+        <H2 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
+            Products for Sale
+        </H2>
+        <H2>&nbsp;
+        </H2>
+
+        <table style='text-align: center;' class="table table-dark table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Update</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in wishlist %}
+                {% if request.user.id == item.creator_id  %}
+                <tr>
+                  <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>$ {{ item.price }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>
+                      <a class="btn btn-sm btn-info" href="{% url 'update_item' item.id %}">Update</a>
+                    </td>
+                    <td> 
+                      <a class="btn btn-sm btn-danger" href="">Remove</a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+        </table>
+
+        <div align="center">
+          <a style ="height: 45px; opacity:0.9; border-radius: 20px; border: 3px solid #000000;" href="/products/new_item" class="btn btn-primary" type="button">Add/Update an item</a>
+        </div>
+
+        <H2>&nbsp;</H2>
+
+        <H2 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
+            Your Orders Info
+        </H2>
+        
+        <H2>&nbsp;</H2>
+
+        <table style='text-align: center;' class="table table-dark table-striped">
+          <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Ordered by</th>
+                <th scope="col">Status</th>
+                <th scope="col">Price</th>
+                <th scope="col">Offered by</th>
+                <th scope="col">Update</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in orders %}
+              {% if request.user.id == item.wishlist_item.creator_id  %}
+              <tr>
+                <th scope="row">{{ item.id }}</th>
+                  <td>{{ item.wishlist_item }}</td>
+                  <td>{{ item.customer }}</td>
+                  <td>{{ item.status }}</td>
+                  <td>{{ item.wishlist_item.price }}</td>
+                  <td>{{ item.wishlist_item.creator }}</td>
+                  <td>
+                    <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
+                  </td>
+                  <td> 
+                    <a class="btn btn-sm btn-danger" href="">Remove</a>
+                  </td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+        </table>
+    
+    </div>
+  </div>
 </div>
 
 {% endblock %}

@@ -9,21 +9,31 @@
           <li class="nav-item">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link active" aria-current="page" href="/../home">Home</a>
           </li>
-          {% if request.user.is_staff == 1  %}
+          {% if request.user.is_superuser == 1  %}
           <li class="nav-item">
             <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link" href="/products/">Products</a>
           </li>
           {% endif %}
+          {% if request.user.is_staff == 0  or request.user.is_superuser == 1 %}
+            <li>
+              <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link active" aria-current="page"  href="/products/products/">Products For Sale</a>
+            </li>
+          {% endif %}
           <li class="nav-item dropdown">
-            <a style="font-size: 20px; margin-right: 13px; color:white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a style="font-size: 20px; margin-right: 13px; color:rgb(253, 253, 253)" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/products/profile/">Account Info</a></li>
-              <li><a class="dropdown-item" href="/products/wishlist/">My Wishlist</a></li>
-              <li><a class="dropdown-item" href="/products/orders/">My Orders</a></li>
+            <ul class="dropdown-menu" style = "background-color:rgb(226, 220, 220);" aria-labelledby="navbarDropdown">
+              <li><a style="color:rgb(0, 0, 0);"class="dropdown-item" href="/products/profile/">Account Info</a></li>
+              {% if request.user.is_staff == 1  %}
+                <li><a style="color:rgb(0, 0, 0);" class="dropdown-item" href="/products/wishlist/">My Dashboard</a></li>
+              {% endif %}
+
+              {% if request.user.is_staff == 0  or request.user.is_superuser == 1 %}
+              <li><a style="color:rgb(0, 0, 0);" class="dropdown-item" href="/products/orders/">My Orders</a></li>
+              {% endif %}
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a style="color:rgb(0, 0, 0);" class="dropdown-item" href="/products/contact_form">Contact Us</a></li>
             </ul>
           </li>
           {% if request.user.username == 'admin'  %}

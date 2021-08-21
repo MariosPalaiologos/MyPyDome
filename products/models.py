@@ -28,6 +28,7 @@ class Wishlist(models.Model):
     CATEGORY = (
         ('Groceries', 'Groceries'),
         ('Food', 'Food'),
+        ('Clothing-Apparel', 'Clothing-Apparel'),
         ('Household', 'Household'),
         ('Appliances', 'Appliances'),
         ('Electronics', 'Electronics'),
@@ -60,3 +61,20 @@ class Order(models.Model):
     wishlist_item = models.ForeignKey(Wishlist, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
+
+
+class ContactForm(models.Model):
+    ACCOUNT_STATUS=(
+                    ('Company', 'Company'),
+                    ('Customer', 'Customer'),
+                    ('No', 'No')
+    )
+    STATUS = (
+              ('Sent', 'Sent'),
+              ('Being Reviewed','Being Reviewed'),
+              ('Finished', 'Finished')
+    )
+    name = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    message = models.CharField(max_length=250, null=True)
+    change_account_type = models.CharField(max_length=200, default='No', choices=ACCOUNT_STATUS)
+    status = models.CharField(max_length=200, default='Sent', choices=STATUS)

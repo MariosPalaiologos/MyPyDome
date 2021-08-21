@@ -2,18 +2,20 @@
 
 {% block content %}
 
-<H1 align="center" style="font-size: 70px; color:rgb(51, 51, 51); text-decoration: underline;">
+<div class="container">
+
+
+<H2 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
     Your Information
-  </H1>
+  </H2>
   <H2>&nbsp;
-    <br> &nbsp;
-    <br> &nbsp;
   </H2>
 
 <table style='text-align: center;' class="table table-dark table-striped">
     <thead>
         <tr>
           <th scope="col">#ID</th>
+          <th scope="col">Account Type</th>
           <th scope="col">Username</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
@@ -24,6 +26,12 @@
       <tbody>
         <tr>
           <th scope="row">{{ request.user.id }}</th>
+            {% if request.user.is_staff == 1  %}
+            <td>Company</td>
+            {% endif %}
+            {% if request.user.is_staff == 0  %}
+            <td>Customer</td>
+            {% endif %}
             <td>{{ request.user.username }}</td>
             <td>{{ request.user.first_name }} {{ request.user.last_name }}</td>
             <td>{{ request.user.email }}</td>
@@ -34,5 +42,47 @@
         </tr>
       </tbody>
 </table>
+
+{% if request.user.is_staff == 0  %}
+<div align="center" style='background-color:gray'>
+<a target="_blank" style ="font-size:25px; color:rgb(0, 0, 0)" href="/products/contact_form">If you are part of a Company and would like to cooperate with us then you can Upgrade your profile by letting Us know!!</a>
+</div>
+{% endif %}
+
+</H2>
+<H2>&nbsp;
+</H2>
+
+
+<H2 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
+  Your Contact Forms
+</H2>
+<H2>&nbsp;
+</H2>
+
+<table style='text-align: center;' class="table table-dark table-striped">
+  <thead>
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Message</th>
+        <th scope="col">Status</th>
+        <th scope="col">Change Account Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in contact_forms %}
+        {% if request.user.id == item.name_id  %}
+        <tr>
+          <th scope="row">{{ item.id }}</th>
+            <td>{{ item.message }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.change_account_type }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
 
 {% endblock %}

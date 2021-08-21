@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<H1 align="center" style="font-size: 70px; color:rgb(51, 51, 51); text-decoration: underline;">
+<div class="container">
+
+<H1 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
     Your Orders
   </H1>
   <H2>&nbsp;
@@ -16,6 +18,8 @@
           <th scope="col">#</th>
           <th scope="col">ID</th>
           <th scope="col">Status</th>
+          <th scope="col">Price</th>
+          <th scope="col">Offered by</th>
           <th scope="col">Update</th>
           <th scope="col">Remove</th>
         </tr>
@@ -27,6 +31,8 @@
           <th scope="row">{{ item.id }}</th>
             <td>{{ item.wishlist_item }}</td>
             <td>{{ item.status }}</td>
+            <td>{{ item.wishlist_item.price }}</td>
+            <td>{{ item.wishlist_item.creator }}</td>
             <td>
               <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
             </td>
@@ -40,8 +46,9 @@
 </table>
 
 <div align="center">
-  <a style ="height: 45px; opacity:0.9; border-radius: 25px; border: 2px solid #d1d1d1;" href="/products/create_order" class="btn btn-primary" type="button">Create new order</a>
+  <a class="btn btn-primary" style ="height: 45px; opacity:0.9; border-radius: 20px; border: 3px solid #000000;" href="/products/create_order" class="btn btn-primary" type="button">Create new order</a>
 </div>
 
+</div>
 
 {% endblock %}

@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <title>Home Page</title>
+    <title>MyPyDome</title>
 
   
   </head>
@@ -65,13 +65,6 @@
           <h5>Photo of me:</h5>
           <div class="fakeimg">Fake Image</div>
           <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-          <h3 style="color:black; text-decoration:underline;">Special Thanks:</h3>
-          <p>
-            <a target="_blank" style ="color:black" href="https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA">Programming with Mosh</a>
-            <br><a target="_blank" style ="color:black" href="https://www.youtube.com/channel/UCTZRcDjjkVajGL6wd76UnGg">Dennis Ivy</a>
-            <br><a target="_blank" style ="color:black" href="https://www.w3schools.com">W3schools</a>
-            <br><a target="_blank" style ="color:black" href="https://stackoverflow.com/">Stack Overflow</a>
-          </p>
           <h3>Some Links</h3>
           <p>Lorem ipsum dolor sit ame.</p>
           <ul class="nav nav-pills flex-column">
@@ -97,20 +90,20 @@
           <hr class="d-sm-none">
         </div>
         <div class="col-sm-8">
-          <h2 style="color:black;">TITLE HEADING</h2>
-          <h5>Title description, Dec 7, 2017</h5>
-          <div class="fakeimg">Fake Image</div>
-          <p>Some text..</p>
-          <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-          <br>
-          <h2>TITLE HEADING</h2>
-          <h5>Title description, Sep 2, 2017</h5>
-          <div class="fakeimg">Fake Image</div>
-          <p>Some text..</p>
-          <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <div class="container">
+
+                {% block content %}
+          
+                {% endblock %}
+          
+            </div>
         </div>
       </div>
     </div>
+
+    <H2>&nbsp;
+        <br> &nbsp;
+    </H2>
 
     <footer>
       <p> Thanks for visiting! </p>

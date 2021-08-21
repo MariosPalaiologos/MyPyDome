@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Order, Wishlist
+from .models import Order, Wishlist, ContactForm
 
 class OrderForm(ModelForm):
     class Meta:
@@ -12,3 +12,9 @@ class NewItemForm(ModelForm):
     class Meta:
         model = Wishlist
         fields = ['name', 'price', 'category', 'description']
+
+
+class NewContactForm(ModelForm):
+    class Meta:
+        model = ContactForm
+        fields = ['message', 'change_account_type']
