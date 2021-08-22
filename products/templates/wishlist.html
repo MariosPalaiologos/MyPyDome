@@ -30,7 +30,7 @@
       </table>
 
       <div align="center">
-        <a class="btn btn-primary" style ="height: 45px; opacity:0.9; border-radius: 20px; border: 3px solid #000000;" href="{% url 'update_user' request.user.id %}">Update Info</a>
+        <a class="btn btn-primary" style ="height: 45px; border-radius: 20px; border: 3px solid #000000;" href="{% url 'update_user' request.user.id %}">Update Info</a>
       </div>
 
      
@@ -53,6 +53,7 @@
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Price</th>
+                  <th scope="col">Stock</th>
                   <th scope="col">Category</th>
                   <th scope="col">Description</th>
                   <th scope="col">Update</th>
@@ -66,6 +67,7 @@
                   <th scope="row">{{ item.id }}</th>
                     <td>{{ item.name }}</td>
                     <td>$ {{ item.price }}</td>
+                    <td>{{ item.stock }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.description }}</td>
                     <td>
@@ -81,7 +83,7 @@
         </table>
 
         <div align="center">
-          <a style ="height: 45px; opacity:0.9; border-radius: 20px; border: 3px solid #000000;" href="/products/new_item" class="btn btn-primary" type="button">Add/Update an item</a>
+          <a style ="height: 45px; border-radius: 20px; border: 3px solid #000000;" href="/products/new_item" class="btn btn-primary" type="button">Add/Update an item</a>
         </div>
 
         <H2>&nbsp;</H2>

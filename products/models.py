@@ -38,6 +38,7 @@ class Wishlist(models.Model):
 
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField(null=True)
+    stock = models.IntegerField(null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     description = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
@@ -51,8 +52,8 @@ class Wishlist(models.Model):
 class Order(models.Model):
     STATUS=(
             ('Pending Approval', 'Pending Approval'),
-            ('Future needs', 'Future needs'),
             ('Ordered', 'Ordered'),
+            ('Delivering', 'Delivering'),
             ('Delivered', 'Delivered')
     )
 
@@ -60,7 +61,7 @@ class Order(models.Model):
     customer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     wishlist_item = models.ForeignKey(Wishlist, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
+    status = models.CharField(max_length=200, default='Pending Approval', choices=STATUS)
 
 
 class ContactForm(models.Model):
