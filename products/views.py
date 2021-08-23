@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required # gia na mhn exw prosv
 from django.contrib.admin.views.decorators import staff_member_required  #gia eisodos admin
 from django.contrib.auth.models import User
 
-from .forms import OrderForm, NewItemForm, NewContactForm
+from .forms import OrderForm, NewItemForm, NewContactForm, OrderFormUpdate, NewAccountTypeContactForm
 
 # Create your views here.
 #TI FAINETAI SE KA8E URL REQUEST
@@ -91,16 +91,16 @@ def createOrder(request):                #
 def updateOrder(request, pk):  
 
     order = Order.objects.get(id=pk)
-    form = OrderForm(instance=order)       #gia na parw ta dedomena tou curr Order
+    form = OrderFormUpdate(instance=order)       #gia na parw ta dedomena tou curr Order
 
     if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
+        form = OrderFormUpdate(request.POST, instance=order)
         if form.is_valid():
-            #form.save()
+            form.save()
             #return redirect('orders')
-            obj = form.save(commit=False)
-            obj.customer = User.objects.get(pk=request.user.id) #gia ton current user
-            obj.save()
+            # obj = form.save(commit=False)
+            # obj.customer = User.objects.get(pk=request.user.id) #gia ton current user
+            # obj.save()
             return redirect('wishlist')
 
     context={'form':form}
@@ -176,10 +176,30 @@ def contact_form(request):
     return render(request, 'contact_form.html', context)
 
 
+@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+def change_account_type(request):
+
+    form = NewAccountTypeContactForm()
+
+    if request.method == 'POST':
+        #print('Printing POST: ', request.POST)
+        form = NewAccountTypeContactForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.name = User.objects.get(pk=request.user.id)  #gia ton current user
+            obj.save()
+            return redirect('profile')
+
+
+    context={'form':form}
+
+    return render(request, 'change_account_type.html', context)
+
+
 
 
 @login_required(login_url='accounts')
-def pruducts_for_sale(request):                # 
+def pruducts_for_sale(request):
 
     #return HttpResponse('Hello World from profile')
 
@@ -188,3 +208,17 @@ def pruducts_for_sale(request):                #
     context={'products': products, 'orders': orders}
     
     return render(request, 'products_for_sale.html', context)
+
+
+
+@login_required(login_url='accounts')
+def deleteOrder(request, pk):
+
+    order = Order.objects.get(id=pk)
+
+    if request.method == 'POST':
+        order.delete()
+        return redirect('wishlist')
+
+    context={'item':order}
+    return render(request, 'delete_order.html', context)

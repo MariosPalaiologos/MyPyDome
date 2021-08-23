@@ -7,9 +7,10 @@
 <H1 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
     Your Orders
   </H1>
-  <H2>&nbsp;
+
+<H2>&nbsp;
+</H2>
   
-  </H2>
 
 <table style='text-align: center;' class="table table-dark table-striped">
     <thead>
@@ -33,7 +34,7 @@
             <td>{{ item.wishlist_item.price }}</td>
             <td>{{ item.wishlist_item.creator }}</td>
             <td>
-              <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
+              <a class="btn btn-sm btn-info" href="">Update</a>
             </td>
             <td> 
               <a class="btn btn-sm btn-danger" href="">Remove</a>
@@ -46,6 +47,18 @@
 
 <div align="center">
   <a class="btn btn-primary" style ="height: 45px;  border-radius: 20px; border: 3px solid #000000;" href="/products/create_order" class="btn btn-primary" type="button">Create new order</a>
+</div>
+
+<H2>&nbsp;
+</H2>
+
+<div  align="center" style='opacity:0.7; border-radius: 20px; background-color:rgb(167, 167, 167)'>
+  <p style ="width:100%; font-size:18px; color:rgb(0, 0, 0)">
+  -"Pending Approval" means your order is being reviewed.
+  <br>-"Ordered" status means it is processed for delevering.
+  <br>-"Delivering" status means it is being delivered to you.
+  <br>-"Delivered" status means you have recieved your order.
+  </p>
 </div>
 
 </div>

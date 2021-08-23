@@ -20,8 +20,8 @@
 			background-image: url("https://images.unsplash.com/photo-1628277575641-ee4b1bd8454f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"); background-repeat: no-repeat; background-size: cover;
 		}
 		.user_card {
-			width: 480px;
-            height: 380px;
+			width: 450px;
+            height: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
 			background-image: url("https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=562&q=80"); background-repeat: no-repeat; background-size: cover;
@@ -90,28 +90,19 @@
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
-					<h3 style= "text-decoration: underline; color:rgb(2, 2, 2);" id="form-title">Contact US</h3>
+					<h3 style= "text-align: center; text-decoration: underline; color:rgb(2, 2, 2);" id="form-title">Are you sure you want to delete "{{item}}"</h3>
 				</div>
 
 <div style= "text-decoration: underline; color:rgb(255, 253, 253);" class="d-flex justify-content-center form_container">
-    <form method="POST" action="">
+    <form method="POST" action="{% url 'delete_order' item.id %}">
         {% csrf_token %}
         
-        <div class="input-group mb-3">
-            <div class="input-group-append">
-               
-            </div>
-            {{ form.message.name }}: 
-            {{ form.message }}
-        </div>
-        
-
 		<div class="d-flex justify-content-center mt-3 login_container">
-				<input  class="login_btn" type="submit" value="Submit">
+				<input  class="login_btn" type="submit" value="Confirm">
 		</div>
 
-		<div class="d-flex justify-content-center mt-4 login_container">
-			<a style="border-radius: 15px;" type="button" class="btn btn-danger" href="/products/profile/">Return</a>
+		<div class="d-flex justify-content-center mt-3 login_container">
+			<a style="border-radius: 15px;" type="button" class="btn btn-danger" href="/products/wishlist/">Return</a>
 		</div>
 
     </form>

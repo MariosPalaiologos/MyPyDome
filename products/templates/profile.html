@@ -43,9 +43,13 @@
       </tbody>
 </table>
 
+</H2>
+<H2>&nbsp;
+</H2>
+
 {% if request.user.is_staff == 0  %}
-<div align="center" style='background-color:gray'>
-<a target="_blank" style ="font-size:25px; color:rgb(0, 0, 0)" href="/products/contact_form">If you are part of a Company and would like to cooperate with us then you can Upgrade your profile by letting Us know!!</a>
+<div align="center" style='opacity:0.8; border-radius: 20px;  background-color:gray'>
+<a style ="font-size:25px; color:rgb(0, 0, 0)" href="/products/change_account_type">If you are part of a Company and would like to cooperate with us then you can Upgrade your profile by letting Us know!!</a>
 </div>
 {% endif %}
 

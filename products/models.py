@@ -57,11 +57,14 @@ class Order(models.Model):
             ('Delivered', 'Delivered')
     )
 
-    #sysxetish me to model Costomer
+    #sysxetish me to model Customer
     customer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     wishlist_item = models.ForeignKey(Wishlist, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=200, default='Pending Approval', choices=STATUS)
+
+    def __str__(self):
+        return self.wishlist_item.name
 
 
 class ContactForm(models.Model):

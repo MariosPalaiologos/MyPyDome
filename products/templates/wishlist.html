@@ -121,7 +121,7 @@
                     <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
                   </td>
                   <td> 
-                    <a class="btn btn-sm btn-danger" href="">Remove</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_order' item.id %}">Remove</a>
                   </td>
               </tr>
               {% endif %}
