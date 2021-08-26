@@ -20,8 +20,7 @@
           <th scope="col">Status</th>
           <th scope="col">Price</th>
           <th scope="col">Offered by</th>
-          <th scope="col">Update</th>
-          <th scope="col">Remove</th>
+          <th scope="col">Cancel Order</th>
         </tr>
       </thead>
       <tbody>
@@ -33,12 +32,18 @@
             <td>{{ item.status }}</td>
             <td>{{ item.wishlist_item.price }}</td>
             <td>{{ item.wishlist_item.creator }}</td>
-            <td>
-              <a class="btn btn-sm btn-info" href="">Update</a>
-            </td>
+      
+            {% if item.status == "Pending Approval" or item.status == "Out of Stock" or item.status == "Ordered" or item.status == "Delivered"%}
             <td> 
-              <a class="btn btn-sm btn-danger" href="">Remove</a>
+              <a class="btn btn-sm btn-danger" href="{% url 'delete_order' item.id %}">Cancel</a>
             </td>
+            {% endif %}
+
+            {% if item.status == "Delivering" %}
+            <td>
+              <button class="btn btn-sm btn-danger" onclick="alert('Unable to cancel at this Stage.')">Cancel</button>
+            </td>
+            {% endif %}
         </tr>
         {% endif %}
         {% endfor %}
@@ -52,12 +57,20 @@
 <H2>&nbsp;
 </H2>
 
-<div  align="center" style='opacity:0.7; border-radius: 20px; background-color:rgb(167, 167, 167)'>
+<div  align="center" style='opacity:0.8; border-radius: 20px; background-color:rgb(167, 167, 167)'>
   <p style ="width:100%; font-size:18px; color:rgb(0, 0, 0)">
   -"Pending Approval" means your order is being reviewed.
   <br>-"Ordered" status means it is processed for delevering.
+  <br>-"Out of Stock" status means item is currently not available,
+  <br>but you can leave it pending until it is restocked.
   <br>-"Delivering" status means it is being delivered to you.
   <br>-"Delivered" status means you have recieved your order.
+  </p>
+</div>
+
+<div  align="center" style='opacity:0.8; border-radius: 20px; background-color:rgb(167, 167, 167)'>
+  <p style ="width:100%; font-size:18px; color:rgb(206, 0, 0)">
+  You can cancel your order if it is before the "Delivering" status.
   </p>
 </div>
 

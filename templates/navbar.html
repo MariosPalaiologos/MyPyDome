@@ -51,7 +51,21 @@
             document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "
           </script>
 
-        <span style="font-size: 20px; margin-right: 20px; color:white">Hello, {{request.user}}</span>
+        <span style="font-size: 20px; color:white" id="greet"></span>
+        <script>
+          const time = new Date().getHours();
+          let greeting;
+          if (time < 10) {
+            greeting = "Good morning";
+          } else if (time < 18) {
+            greeting = "Good afternoon";
+          } else {
+            greeting = "Good evening";
+          }
+          document.getElementById("greet").innerHTML = greeting;
+          </script>
+
+        <span style="font-size: 20px; margin-right: 20px; color:white">, {{request.user}}</span>
         <span><a style="margin-right: 20px; color:white" href="/accounts/logout">Logout</a></span>
       </div>
     </div>

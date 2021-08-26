@@ -57,7 +57,7 @@
                   <th scope="col">Category</th>
                   <th scope="col">Description</th>
                   <th scope="col">Update</th>
-                  <th scope="col">Remove</th>
+                  <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,7 +74,7 @@
                       <a class="btn btn-sm btn-info" href="{% url 'update_item' item.id %}">Update</a>
                     </td>
                     <td> 
-                      <a class="btn btn-sm btn-danger" href="">Remove</a>
+                      <a class="btn btn-sm btn-danger" href="">Delete</a>
                     </td>
                 </tr>
                 {% endif %}
@@ -104,7 +104,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Offered by</th>
                 <th scope="col">Update</th>
-                <th scope="col">Remove</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -120,14 +120,30 @@
                   <td>
                     <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
                   </td>
+                  {% if item.status == "Out of Stock" or item.status == "Pending Approval" or item.status == "Delivered" %}
                   <td> 
-                    <a class="btn btn-sm btn-danger" href="{% url 'delete_order' item.id %}">Remove</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_order' item.id %}">Delete</a>
                   </td>
-              </tr>
+                  {% endif %}
+
+                  {% if item.status == "Ordered" or item.status == "Delivering" %}
+                  <td>
+                  <button class="btn btn-sm btn-danger" onclick="alert('Unable to cancel at this Stage.')">Delete</button>
+                  </td>
+                  {% endif %}
+                </tr>
               {% endif %}
               {% endfor %}
             </tbody>
         </table>
+
+        <div  align="center" style='opacity:0.8; border-radius: 20px; background-color:rgb(167, 167, 167)'>
+          <p style ="width:100%; font-size:18px; color:rgb(206, 0, 0)">
+          You can't cancel your order if it is in the "Ordered" or "Delivering" stage.
+          </p>
+        </div>
+
+        
     
     </div>
   </div>
