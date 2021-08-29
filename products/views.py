@@ -11,6 +11,8 @@ from django.contrib.auth.models import User
 
 from .forms import OrderForm, NewItemForm, NewContactForm, OrderFormUpdate, NewAccountTypeContactForm
 
+from .filters import *
+
 # Create your views here.
 #TI FAINETAI SE KA8E URL REQUEST
 
@@ -50,8 +52,12 @@ def orders_index(request):                #
     #return HttpResponse('Hi from Orders')
     
     orders = Order.objects.all()
+
+    myFilter = OrderFilter()   # gia search
+
+    context = {'orders': orders, 'myFilter': myFilter}
     
-    return render(request, 'order.html', {'orders': orders})
+    return render(request, 'order.html', context)
 
 
 @login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
@@ -204,8 +210,15 @@ def pruducts_for_sale(request):
     #return HttpResponse('Hello World from profile')
 
     products = Wishlist.objects.all()
+    #products_all = Wishlist.objects.all()
+    #products = products_all.exclude(stock='0')  #gia na mhn deixnw dia8esimo me 0 stock
+
     orders = Order.objects.all()
-    context={'products': products, 'orders': orders}
+
+    myFilter = ProductsForSale(request.GET, queryset=products)
+    products = myFilter.qs   # neo 'products' meta so search  
+
+    context={'products': products, 'orders': orders, 'myFilter':myFilter}
     
     return render(request, 'products_for_sale.html', context)
 

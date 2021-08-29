@@ -4,6 +4,15 @@
 
 <div class="container">
 
+<!-- <form method="get">
+
+  {{myFilter.form}}
+
+  <a class="btn btn-primary" style ="height: 45px;  border-radius: 20px; border: 3px solid #000000;" href="/products/create_order" class="btn btn-primary" type="submit">
+    Search</a>
+
+</form> -->
+
 <H1 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
     Your Orders
   </H1>
@@ -19,7 +28,8 @@
           <th scope="col">ID</th>
           <th scope="col">Status</th>
           <th scope="col">Price</th>
-          <th scope="col">Offered by</th>
+          <th scope="col">Seller</th>
+          <th scope="col">Date Ordered</th>
           <th scope="col">Cancel Order</th>
         </tr>
       </thead>
@@ -32,6 +42,7 @@
             <td>{{ item.status }}</td>
             <td>{{ item.wishlist_item.price }}</td>
             <td>{{ item.wishlist_item.creator }}</td>
+            <td>{{ item.date_created.date }}</td>
       
             {% if item.status == "Pending Approval" or item.status == "Out of Stock" or item.status == "Ordered" or item.status == "Delivered"%}
             <td> 
@@ -51,7 +62,7 @@
 </table>
 
 <div align="center">
-  <a class="btn btn-primary" style ="height: 45px;  border-radius: 20px; border: 3px solid #000000;" href="/products/create_order" class="btn btn-primary" type="button">Create new order</a>
+  <a class="btn btn-primary" style ="height: 42px;  border-radius: 20px; border: 2px solid #000000;" href="/products/create_order" class="btn btn-primary" type="button">Create new order</a>
 </div>
 
 <H2>&nbsp;

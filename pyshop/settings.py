@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
+
+    'django_filters',
 ]
 
 MIDDLEWARE = [
