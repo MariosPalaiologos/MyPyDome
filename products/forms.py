@@ -19,7 +19,7 @@ class OrderFormUpdate(ModelForm):
 class NewItemForm(ModelForm):
     class Meta:
         model = Wishlist
-        fields = ['name', 'price', 'stock', 'category', 'description']
+        fields = ['name', 'price', 'status', 'stock', 'category', 'description']
 
 
 class NewContactForm(ModelForm):

@@ -36,6 +36,11 @@ class Wishlist(models.Model):
         ('Computer Parts', 'Computer Parts'),
     )
 
+    STATUS = (
+        ('Pre-Order', 'Pre-Order'),
+        ('Available Now', 'Available Now'),
+    )
+
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField(null=True)
     stock = models.IntegerField(null=True)
@@ -44,6 +49,7 @@ class Wishlist(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     #creator = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+    status = models.CharField(max_length=200, null=True,choices=STATUS)
 
     def __str__(self):
         return self.name

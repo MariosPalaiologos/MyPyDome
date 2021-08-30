@@ -79,12 +79,23 @@ def createOrder(request):                #
     if request.method == 'POST':
         #print('Printing POST: ', request.POST)
         form = OrderForm(request.POST)
+
         if form.is_valid():
             #form.save()
             #return redirect('orders')
             obj = form.save(commit=False)
             obj.customer = User.objects.get(pk=request.user.id)  #gia ton current user
             obj.save()
+
+            # Otan kanw order, to stock paei -1
+            item = form.cleaned_data['wishlist_item']
+            product = Wishlist.objects.get(name=item)
+
+            if product.stock > 0:  #an den exei stock tou dinw thn epilogh na perimenei apla
+
+                product.stock = product.stock - 1
+                product.save()
+
             return redirect('orders')
 
 

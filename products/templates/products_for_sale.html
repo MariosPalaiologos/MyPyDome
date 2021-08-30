@@ -21,7 +21,7 @@
         
         <form method="get">
     
-          {{myFilter.form}}
+          {{myFilter.form.as_table }}
     
           <button  class = 'btn btn-primary' type='submit' >
             Search</button>
@@ -36,6 +36,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
+              <th scope="col">Status</th>
               <th scope="col">Price</th>
               <th scope="col">Category</th>
               <th scope="col">Description</th>
@@ -48,6 +49,7 @@
             <tr>
               <th scope="row">{{ item.id }}</th>
                 <td>{{ item.name }}</td>
+                <td>{{ item.status }}</td>
                 <td>$ {{ item.price }}</td>
                 <td>{{ item.category }}</td>
                 <td>{{ item.description }}</td>

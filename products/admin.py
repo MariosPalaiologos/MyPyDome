@@ -17,7 +17,7 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'date_created')
 
 class WishlistAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price','stock', 'category', 'description', "date_created", 'creator')
+    list_display = ('name', 'price', 'stock', 'category','status', 'description', "date_created", 'creator')
 
 
 class OrderAdmin(admin.ModelAdmin):
