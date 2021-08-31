@@ -42,7 +42,7 @@
       
 
         <H2 align="center" style="font-size: 50px; color:rgb(0, 0, 0); text-decoration: underline;">
-            Products for Sale
+            Your Products Info
         </H2>
         <H2>&nbsp;
         </H2>
@@ -56,7 +56,7 @@
                   <th scope="col">Price</th>
                   <th scope="col">Stock</th>
                   <th scope="col">Category</th>
-                  <th scope="col">Description</th>
+                  
                   <th scope="col">Update</th>
                   <th scope="col">Delete</th>
                 </tr>
@@ -71,12 +71,12 @@
                     <td>$ {{ item.price }}</td>
                     <td>{{ item.stock }}</td>
                     <td>{{ item.category }}</td>
-                    <td>{{ item.description }}</td>
+                    
                     <td>
                       <a class="btn btn-sm btn-info" href="{% url 'update_item' item.id %}">Update</a>
                     </td>
                     <td> 
-                      <a class="btn btn-sm btn-danger" href="">Delete</a>
+                      <a class="btn btn-sm btn-danger" href="{% url 'delete_product' item.id %}">Delete</a>
                     </td>
                 </tr>
                 {% endif %}
@@ -96,15 +96,34 @@
         
         <H2>&nbsp;</H2>
 
+        <div class='container-fluid' style='opacity:1; background-color:rgb(44, 48, 52)'>
+
+          <p align="center" style="font-size: 25px; color:rgb(255, 255, 255); text-decoration: underline;">
+            Filters
+          </p>
+
+          <div align="center" class='container-fluid' style="font-size: 15px; color:rgb(255, 255, 255)">
+            
+            <form method="get">
+        
+              {{myFilter.form }}
+        
+              <button  class = 'btn btn-primary' type='submit' >
+                Search</button>
+          
+            </form>
+    
+          </div>
+        </div>
+
         <table style='text-align: center;' class="table table-dark table-striped">
           <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">ID</th>
-                <th scope="col">Ordered by</th>
+                <th scope="col">Customer</th>
                 <th scope="col">Status</th>
-                <th scope="col">Price</th>
-                <th scope="col">Offered by</th>
+               
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -117,8 +136,7 @@
                   <td>{{ item.wishlist_item }}</td>
                   <td>{{ item.customer }}</td>
                   <td>{{ item.status }}</td>
-                  <td>{{ item.wishlist_item.price }}</td>
-                  <td>{{ item.wishlist_item.creator }}</td>
+                  
                   <td>
                     <a class="btn btn-sm btn-info" href="{% url 'update_order' item.id %}">Update</a>
                   </td>

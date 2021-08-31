@@ -13,6 +13,8 @@ from .forms import OrderForm, NewItemForm, NewContactForm, OrderFormUpdate, NewA
 
 from .filters import *
 
+from django.db.models.functions import Lower  # gia to Order BY case insensitive
+
 # Create your views here.
 #TI FAINETAI SE KA8E URL REQUEST
 
@@ -40,9 +42,13 @@ def wishlist_index(request):                #
 
     #return HttpResponse('Hello World from profile')
 
-    wishlist = Wishlist.objects.all()
-    orders = Order.objects.all()
-    context={'wishlist': wishlist, 'orders': orders}
+    wishlist = Wishlist.objects.all().order_by(Lower('name'))
+    orders = Order.objects.all().order_by('customer')
+
+    myFilter = OrderFilter(request.GET, queryset=orders)
+    orders = myFilter.qs   # neo 'orders' meta so search  
+
+    context={'wishlist': wishlist, 'orders': orders, 'myFilter': myFilter}
     
     return render(request, 'wishlist.html', context)
 
@@ -53,9 +59,7 @@ def orders_index(request):                #
     
     orders = Order.objects.all()
 
-    myFilter = OrderFilter()   # gia search
-
-    context = {'orders': orders, 'myFilter': myFilter}
+    context = {'orders': orders}
     
     return render(request, 'order.html', context)
 
@@ -83,9 +87,9 @@ def createOrder(request):                #
         if form.is_valid():
             #form.save()
             #return redirect('orders')
-            obj = form.save(commit=False)
-            obj.customer = User.objects.get(pk=request.user.id)  #gia ton current user
-            obj.save()
+            # obj = form.save(commit=False)
+            # obj.customer = User.objects.get(pk=request.user.id)  #gia ton current user
+            # obj.save()
 
             # Otan kanw order, to stock paei -1
             item = form.cleaned_data['wishlist_item']
@@ -93,10 +97,15 @@ def createOrder(request):                #
 
             if product.stock > 0:  #an den exei stock tou dinw thn epilogh na perimenei apla
 
+                obj = form.save(commit=False)
+                obj.customer = User.objects.get(pk=request.user.id)  #gia ton current user
+                obj.save()
                 product.stock = product.stock - 1
                 product.save()
 
-            return redirect('orders')
+                return redirect('orders')
+            else:
+                return redirect('no_stock')
 
 
     context={'form':form}
@@ -220,7 +229,7 @@ def pruducts_for_sale(request):
 
     #return HttpResponse('Hello World from profile')
 
-    products = Wishlist.objects.all()
+    products = Wishlist.objects.all().order_by(Lower('name'))
     #products_all = Wishlist.objects.all()
     #products = products_all.exclude(stock='0')  #gia na mhn deixnw dia8esimo me 0 stock
 
@@ -246,3 +255,39 @@ def deleteOrder(request, pk):
 
     context={'item':order}
     return render(request, 'delete_order.html', context)
+
+
+@login_required(login_url='accounts')
+def deleteProduct(request,pk):
+    product = Wishlist.objects.get(id=pk)
+
+
+    #POLY SHMANTIKO
+    #AN TO PRODUCT UPARXEI SE ACTIVE ORDER DEN MPORW NA TO SVHSW
+    if request.method == 'POST':
+        orders = Order.objects.filter(wishlist_item=product.id).exclude(status='Delivered').count()
+
+        if orders > 0:
+           return redirect('product_in_order')
+        else:
+            product.delete()
+            return redirect('wishlist')
+            
+
+    context={'item':product}
+    return render(request, 'delete_product.html', context)
+
+
+
+@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+def no_stock(request):
+    #return HttpResponse('Welcome to PyShop')
+
+    return render(request, 'no_stock.html')
+
+
+@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+def product_in_order(request):
+    #return HttpResponse('Welcome to PyShop')
+
+    return render(request, 'product_in_order.html')

@@ -8,6 +8,7 @@ class OrderFilter(django_filters.FilterSet):
     class Meta:
         model = Order
         fields = '__all__'
+        exclude = ['date_created']
 
 
 class ProductsForSale(django_filters.FilterSet):
@@ -19,7 +20,7 @@ class ProductsForSale(django_filters.FilterSet):
     # lte = less than equal
 
     product = CharFilter(field_name = "name", lookup_expr='icontains')
-    min_price = NumberFilter(field_name = "price", lookup_expr='gt')
+    #min_price = NumberFilter(field_name = "price", lookup_expr='gt')
     max_price = NumberFilter(field_name = "price", lookup_expr='lt')
     
 

@@ -21,7 +21,7 @@
         
         <form method="get">
     
-          {{myFilter.form.as_table }}
+          {{myFilter.form }}
     
           <button  class = 'btn btn-primary' type='submit' >
             Search</button>
@@ -41,7 +41,7 @@
               <th scope="col">Category</th>
               <th scope="col">Description</th>
               <th scope="col">Sold By</th>
-              <th scope="col">Add Item</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -54,9 +54,7 @@
                 <td>{{ item.category }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{item.creator}}</td>
-                <td> 
-                    <a class="btn btn-sm btn-info" href="">+</a>
-                </td>
+                
             </tr>
             {% endfor %}
           </tbody>
@@ -64,15 +62,12 @@
 
     
 
-    <div  align="center" style='opacity:0.8; border-radius: 15px; background-color:rgb(167, 167, 167)'>
+    <!--<div  align="center" style='opacity:0.8; border-radius: 15px; background-color:rgb(167, 167, 167)'>
       <p style ="width:100%; font-size:18px; color:rgb(206, 0, 0)">
       You can order a product that is currently out of stock, but it will probably have a longer estimated time of arrival.
       </p>
     </div>
-
-    </H2>
-    <H2>&nbsp;
-    </H2>
+    -->
 
     <div align="center">
         <a class="btn btn-primary" style ="height: 42px; border-radius: 20px; border: 2px solid #000000;" href="/products/create_order" class="btn btn-primary" type="button">Make an Order</a>

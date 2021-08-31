@@ -1,0 +1,29 @@
+<style>
+    footer {
+        text-align: left;
+        padding: 5px;
+        position: fixed;
+        width:100%;
+        bottom: 0px;
+        background-color: rgb(8, 6, 5);
+        color: white;
+    }
+</style>
+
+
+<footer>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <p style='text-decoration:underline;'> Developed in Django.</p>
+        </div>
+  
+    <div align='right' class="col-sm-6">
+            <span  style="text-decoration:underline; font-size: 18px;" id="datetime"></span>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "
+            </script>
+    </div>
+   
+</footer>
