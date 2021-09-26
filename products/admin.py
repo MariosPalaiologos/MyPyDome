@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Offer, Wishlist, Order, ContactForm
+from .models import Product, Offer, Wishlist, Order, ContactForm, Favorites
 
 from accounts.models import Customer
 # Register your models here.
@@ -28,6 +28,10 @@ class ContactFormAdmin(admin.ModelAdmin):
     list_display = ['name', 'message', 'change_account_type', 'status']
 
 
+class FavoritesAdmin(admin.ModelAdmin):
+    list_display = ['customer', 'song']
+
+
 admin.site.register(Product, ProductAdmin)
 
 admin.site.register(Offer, OfferAdmin)
@@ -39,4 +43,6 @@ admin.site.register(Wishlist, WishlistAdmin)
 admin.site.register(Order, OrderAdmin)
 
 admin.site.register(ContactForm, ContactFormAdmin)
+
+admin.site.register(Favorites, FavoritesAdmin)
 

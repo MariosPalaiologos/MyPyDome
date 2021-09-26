@@ -89,3 +89,9 @@ class ContactForm(models.Model):
     message = models.CharField(max_length=250, null=True)
     change_account_type = models.CharField(max_length=200, default='No', choices=ACCOUNT_STATUS)
     status = models.CharField(max_length=200, default='Sent', choices=STATUS)
+
+
+
+class Favorites(models.Model):
+    customer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    song=models.CharField(max_length=200, null=True)

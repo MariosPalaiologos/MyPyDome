@@ -20,18 +20,19 @@
     
 
     <style>
-      .fakeimg {
-        height: 200px;
-        background: #aaa;
+      .home_img {
+        border-radius: 8px; 
+        border: 2px solid #000000;
+        
       }
       
       .sm_icon{
     
       width: 100px;
       height:65px;
-      border-radius: 20px; 
-      border: 2px solid #2929fa;
-      margin: bottom 4px;
+      border-radius: 18px; 
+      border: 2px solid #000000;
+      margin-top: 4px;
     
         /* the height is adjusted automatically*/
       }
@@ -54,9 +55,12 @@
         <div class="col-sm-4">
           <h2 style="color:black; text-decoration:underline;">About the Project</h2>
           <p style="color:black; text-align:justify; text-justify: inter-word; ">Project started at August 4th, 2021. Its original title was "PyShop" and it was based on some tutorials and documentation about Django.</p>
-          <h5>Photo of me:</h5>
-          <div class="fakeimg">Fake Image</div>
-          <p style="color:black;">Some text about me in culpa qui officia deserunt mollit anim..</p>
+          <p style="color:rgb(255, 255, 255); text-decoration: underline; text-align:justify; text-justify: inter-word; ">Project is still in development. A wild bug could make its appeearence. There are still features to be implemented.</p>
+          <h5 style="color:black;">Photo of the Django Framework:</h5>
+          <div>
+          <img class="home_img" style='height:233px;' src="{% static 'images/VS_making_of.png' %}">
+          </div>
+          <p style="color:black; text-decoration:underline; font-size:18px">This is a screenshot of the views Page</p>
           <h3 style="color:black; text-decoration:underline;">Special Thanks:</h3>
           <p>
             <a target="_blank" style ="color:black" href="https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA">Programming with Mosh</a>
@@ -89,17 +93,20 @@
           <hr class="d-sm-none">
         </div>
         <div class="col-sm-8">
-          <h2 style="color:black;">TITLE HEADING</h2>
+          <h2 style="color:black; text-decoration:underline; font-size:45px;">Your Home Page</h2>
           <h5 style="color:black;">Title description, Dec 7, 2017</h5>
-          <div class="fakeimg">Fake Image</div>
+          <!--<div class="home_img">Fake Image</div>-->
+          
+          <!-- YT LINK -->
+          <!--<iframe width="780" height="440" src="https://www.youtube.com/embed/videoseries?list=PLFQzl9QN0xvu-MYfI2EGbnDEyl6AOyj6s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
           <p style="color:black;">Some text..</p>
-          <p style="color:black;">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <p style="color:black;">Some text..</p>
           <br>
           <h2 style="color:black;">TITLE HEADING</h2>
-          <h5 style="color:black;">Title description, Sep 2, 2017</h5>
-          <div class="fakeimg">Fake Image</div>
+          <h5 style="color:black;">Title description, Date</h5>
+          <div class="home_img">Fake Image</div>
           <p style="color:black;">Some text..</p>
-          <p style="color:black;">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+          <p style="color:black;">Some text..</p>
         </div>
       </div>
     </div>

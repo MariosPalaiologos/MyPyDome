@@ -67,7 +67,7 @@
 <table style='text-align: center;' class="table table-dark table-striped">
   <thead>
       <tr>
-        <th scope="col">#ID</th>
+        <th scope="col">Sent By</th>
         <th scope="col">Message</th>
         <th scope="col">Status</th>
         <th scope="col">Change Account Type</th>
@@ -75,9 +75,9 @@
     </thead>
     <tbody>
       {% for item in contact_forms %}
-        {% if request.user.id == item.name_id  %}
+        {% if request.user.id == item.name_id  or request.user.is_superuser == 1 %}
         <tr>
-          <th scope="row">{{ item.id }}</th>
+          <th scope="row">{{ item.name }}</th>
             <td>{{ item.message }}</td>
             <td>{{ item.status }}</td>
             <td>{{ item.change_account_type }}</td>

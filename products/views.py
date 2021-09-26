@@ -2,11 +2,11 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 
-from .models import Product, Wishlist, Order, ContactForm   #import to model product
+from .models import Product, Wishlist, Order, ContactForm   #import ta models
 
 from django.contrib.auth.decorators import login_required # gia na mhn exw prosvash xwris log in
 
-from django.contrib.admin.views.decorators import staff_member_required  #gia eisodos admin
+from django.contrib.admin.views.decorators import staff_member_required  #gia eisodo admin
 from django.contrib.auth.models import User
 
 from .forms import OrderForm, NewItemForm, NewContactForm, OrderFormUpdate, NewAccountTypeContactForm
@@ -19,44 +19,47 @@ from django.db.models.functions import Lower  # gia to Order BY case insensitive
 #TI FAINETAI SE KA8E URL REQUEST
 
 
-#otan kalw /products sto site 8elw na kanlei to index() *****
+#otan kalw /products sto site kanei to index() *****
 
-@staff_member_required(login_url='accounts')     #an den eimai staff de mporw na mpw
-def index(request):                #  gia to products/
+# Den xrhsimopoieitai kapou to index. Htan sta arxika stadia 
+
+@staff_member_required(login_url='accounts')     #an den eimai staff den exw access
+def index(request):                #  gia to products/   
 
     #return HttpResponse('Hello World')
-
+    # Diavazw ta dedomena mou apo DB
     products = Product.objects.all()
     return render(request, 'index.html', {'products': products})  
     #Kalw to arxeio apo to templates, {..}  DICTIONARY
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
-def new_index(request):            # gia to new/
+@login_required(login_url='accounts')     #an den exw kane login den exw access
+def new_index(request):            # gia to products/new/
     return HttpResponse('Hello World from new')
 
 
 
-@staff_member_required(login_url='accounts')     #an den eimai staff de mporw na mpw
-def wishlist_index(request):                # 
+@staff_member_required(login_url='accounts')     #an den eimai staff den exw access
+def wishlist_index(request):                
 
     #return HttpResponse('Hello World from profile')
 
-    wishlist = Wishlist.objects.all().order_by(Lower('name'))
-    orders = Order.objects.all().order_by('customer')
+    # Diavazw ta dedomena mou apo DB
+    wishlist = Wishlist.objects.all().order_by(Lower('name'))    # Emfanizontai me taksinomish me vash to onoma tou proiontos, ordered_by
+    orders = Order.objects.all().order_by('customer')           #Emfanizontai me taksinomish me vash ton customer tou order, ordered_by
 
     myFilter = OrderFilter(request.GET, queryset=orders)
     orders = myFilter.qs   # neo 'orders' meta so search  
 
-    context={'wishlist': wishlist, 'orders': orders, 'myFilter': myFilter}
+    context={'wishlist': wishlist, 'orders': orders, 'myFilter': myFilter}   #Dictionary
     
     return render(request, 'wishlist.html', context)
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def orders_index(request):                #  
     #return HttpResponse('Hi from Orders')
-    
+    # Diavazw ta dedomena mou apo DB
     orders = Order.objects.all()
 
     context = {'orders': orders}
@@ -64,10 +67,11 @@ def orders_index(request):                #
     return render(request, 'order.html', context)
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def profile_index(request):                #  
     #return HttpResponse('Hi from Orders')
 
+    # Diavazw ta dedomena mou apo DB
     contact_forms = ContactForm.objects.all()
     context = {'contact_forms': contact_forms}
     
@@ -75,7 +79,7 @@ def profile_index(request):                #
     return render(request, 'profile.html', context)
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def createOrder(request):                #  
     
     form = OrderForm()
@@ -92,20 +96,20 @@ def createOrder(request):                #
             # obj.save()
 
             # Otan kanw order, to stock paei -1
-            item = form.cleaned_data['wishlist_item']
-            product = Wishlist.objects.get(name=item)
+            item = form.cleaned_data['wishlist_item']    #pairnw to onoma tou
+            product = Wishlist.objects.get(name=item)    #to travaw apo th DB
 
             if product.stock > 0:  #an den exei stock tou dinw thn epilogh na perimenei apla
 
                 obj = form.save(commit=False)
                 obj.customer = User.objects.get(pk=request.user.id)  #gia ton current user
                 obj.save()
-                product.stock = product.stock - 1
+                product.stock = product.stock - 1    #afairw apo to stock afou ekana order
                 product.save()
 
                 return redirect('orders')
             else:
-                return redirect('no_stock')
+                return redirect('no_stock')     #an den exw stock
 
 
     context={'form':form}
@@ -113,7 +117,7 @@ def createOrder(request):                #
     return render(request, 'order_form.html', context)
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def updateOrder(request, pk):  
 
     order = Order.objects.get(id=pk)
@@ -133,7 +137,7 @@ def updateOrder(request, pk):
     return render(request, 'order_form.html', context)
 
 
-@staff_member_required(login_url='accounts')     #an den eimai staff de mporw na mpw
+@staff_member_required(login_url='accounts')     #an den eimai staff den exw access
 def newWishlistItem(request):                #  
     
     form = NewItemForm()
@@ -154,7 +158,7 @@ def newWishlistItem(request):                #
     
     return render(request, 'new_item_form.html', context)
 
-@staff_member_required(login_url='accounts')     #an den eimai staff de mporw na mpw
+@staff_member_required(login_url='accounts')     #an den eimai staff den exw access
 def updateWishlistItem(request, pk):
 
     item = Wishlist.objects.get(id=pk)
@@ -175,14 +179,14 @@ def updateWishlistItem(request, pk):
     return render(request, 'new_item_form.html', context)
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def test_index(request):
     #return HttpResponse('Welcome to PyShop')
 
     return render(request, 'test.html')
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def contact_form(request):
 
     form = NewContactForm()
@@ -202,7 +206,7 @@ def contact_form(request):
     return render(request, 'contact_form.html', context)
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def change_account_type(request):
 
     form = NewAccountTypeContactForm()
@@ -224,7 +228,7 @@ def change_account_type(request):
 
 
 
-@login_required(login_url='accounts')
+@login_required(login_url='accounts')   #an den exw kane login den exw access
 def pruducts_for_sale(request):
 
     #return HttpResponse('Hello World from profile')
@@ -244,7 +248,7 @@ def pruducts_for_sale(request):
 
 
 
-@login_required(login_url='accounts')
+@login_required(login_url='accounts')       #an den exw kane login den exw access
 def deleteOrder(request, pk):
 
     order = Order.objects.get(id=pk)
@@ -257,7 +261,7 @@ def deleteOrder(request, pk):
     return render(request, 'delete_order.html', context)
 
 
-@login_required(login_url='accounts')
+@login_required(login_url='accounts')           #an den exw kane login den exw access
 def deleteProduct(request,pk):
     product = Wishlist.objects.get(id=pk)
 
@@ -268,9 +272,9 @@ def deleteProduct(request,pk):
         orders = Order.objects.filter(wishlist_item=product.id).exclude(status='Delivered').count()
 
         if orders > 0:
-           return redirect('product_in_order')
+           return redirect('product_in_order')     # enhmerwnw pws to proion vrisketai se kapoia energh paragkelia
         else:
-            product.delete()
+            product.delete()                       # An oxi, to diagrafw
             return redirect('wishlist')
             
 
@@ -279,14 +283,14 @@ def deleteProduct(request,pk):
 
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def no_stock(request):
     #return HttpResponse('Welcome to PyShop')
 
     return render(request, 'no_stock.html')
 
 
-@login_required(login_url='accounts')     #an den exw kane login de mporw na mpw
+@login_required(login_url='accounts')     #an den exw kane login den exw access
 def product_in_order(request):
     #return HttpResponse('Welcome to PyShop')
 

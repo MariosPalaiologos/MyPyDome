@@ -29,7 +29,7 @@ def account_index(request):            # gia to acoounts/
 def login_index(request):            # gia to log in/
     #return HttpResponse('Hello World from log in')
 
-    if request.user.is_authenticated:  # gia na mhn mporw na paw sto log in page otan eimai hdh mesa
+    if request.user.is_authenticated:  # gia na mhn mporw na paw sto log in page otan eimai logged
         return redirect("home")
     else:
         if request.method == 'POST':
@@ -51,7 +51,7 @@ def login_index(request):            # gia to log in/
 
 def register_index(request):            # gia to register/
 
-    if request.user.is_authenticated:  # gia na mhn mporw na paw sto log in page otan eimai hdh mesa
+    if request.user.is_authenticated:  # gia na mhn mporw na paw sto register page otan eimai logged
         return redirect("home")
     else:
         form = CreateUserForm()
@@ -81,7 +81,7 @@ def updateUser(request, pk):
         if form.is_valid():
             form.save()
             user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
+            #messages.success(request, 'Account was created for ' + user)
 
             return redirect('/products/profile/')    #paw sto login afou kanw register
 

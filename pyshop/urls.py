@@ -20,6 +20,8 @@ from django.urls import path, include
 
 # =>> path('products/', include('products.urls') otan ena url request 
 # exei to products/ tote to stelnw sto products urls module
+
+# 8eorw to path / san home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('products.urls') ),
