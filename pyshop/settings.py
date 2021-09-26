@@ -25,7 +25,7 @@ SECRET_KEY = '1ml9%m84(0zve@#+u&xj$e_kmzh77mt0mtzkrxhi-+rumwhw6b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.2.4', '127.0.0.1', '*']   #Me to asteri * einai oles oi IP
+ALLOWED_HOSTS = ['192.168.2.4', '127.0.0.1', '*']   # Me to asteri * einai oles oi IP
 
 
 # Application definition
