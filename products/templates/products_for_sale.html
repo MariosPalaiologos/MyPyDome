@@ -49,7 +49,13 @@
             <tr>
               <th scope="row">{{ item.id }}</th>
                 <td>{{ item.name }}</td>
-                <td>{{ item.status }}</td>
+                {% if item.stock == 0 %}
+                  <td>Out of Stock</td>
+                {% endif %}
+                {% if item.stock >= 1 %}
+                  <td>{{ item.status }}</td>
+                {% endif %}
+
                 <td>$ {{ item.price }}</td>
                 <td>{{ item.category }}</td>
                 <td>{{ item.description }}</td>
