@@ -251,11 +251,27 @@ def pruducts_for_sale(request):
 @login_required(login_url='accounts')       #an den exw kane login den exw access
 def deleteOrder(request, pk):
 
-    order = Order.objects.get(id=pk)
+    order = Order.objects.get(id=pk)  
 
     if request.method == 'POST':
+        
+        # *** AN DEN EXEI PARADO8EI TO PROION KAI AKYRWSW THN PARAGELIA, TOTE TO KSANAPROS8ETW STO STOCK
+
+        item_id = order.wishlist_item_id  #vriskw poio einai to proion
+        product = Wishlist.objects.get(id=item_id)    #to travaw apo th DB
+        order_status = order.status
+        print(order_status)
+        if order_status != "Delivered":
+            product.stock = product.stock + 1    # h paragkelia den oloklhrw8hke ara pros8etw ksana to proion sto stock
+            product.save()     # TO KANW SAVE
         order.delete()
-        return redirect('wishlist')
+
+        # Kanw redirect analoga me to ti xrhsths einai!!!!!
+        staff_member = User.objects.get(pk=request.user.id)
+        if staff_member.is_staff == 1:
+            return redirect('wishlist')
+        else:
+            return redirect('orders')
 
     context={'item':order}
     return render(request, 'delete_order.html', context)
