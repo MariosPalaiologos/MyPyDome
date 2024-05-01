@@ -32,3 +32,12 @@ Tables currently used:
 -products_contactform
 
 #######################
+
+Run INFO:
+- Download as ZIP, unzip and load the folder on VSCode
+- Open VSCode terminal and run:
+- python manage.py runserver 192.168.x.x:8000 
+- 192.168.x.x is your local IP
+- When the server is running, go to http://192.168.x.x:8000 on any device connected to your network
+
+#######################
